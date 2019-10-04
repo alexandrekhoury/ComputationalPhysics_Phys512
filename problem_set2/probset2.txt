@@ -1,0 +1,79 @@
+Question 1A)
+
+You need 7 terms to get an error of order 10e-6
+and 8 terms to get an error of less than 10e-6
+
+This gets printed out from my script:
+rms error for chebyshev     is  1.2770527378158147e-06  with max error  2.123740892367998e-06
+rms error for least-squares is  1.1125719802279776e-06  with max error  5.043668096837983e-06
+7 coefficients are needed for the chebyshev polynomial to get an error less than or equal to 1e-6
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Question 1B)
+
+for range of 0.5 to 50 
+
+this is what my code prints:
+rms error for chebyshev     is  7.029070198852409e-07  with max error  4.319634961280627e-06
+rms error for least-squares is  5.498991571454004e-07  with max error  1.2765977746687085e-05
+55 coefficients are needed for the chebyshev polynomial to get an error less than or equal to 1e-6
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++
+Question 2a)
+
+The exponential is clearly not a linear model.
+The starting guess parameters are explained in comments in the code and are :
+
+A=flux[np.where(flux==np.max(flux))]-1 #amplitude of the exponential
+a=55
+to=time[np.where(flux==np.max(flux))]#initial time
+c=1
+#guess parameters
+guess=[A,a,to,c]
+
+#the second and fourth value of the above array were find by trial and error
+
+The plot can be found as: "Q2_a_exponential.png"
+
+
+++++++++++++++++++++++++++++++++++
+Question 2b)
+
+The best fit parameters are :
+The fit parameters are: [2.23354448e-01 6.73881860e+01 1.70652535e+03 1.00472976e+00]
+For my 4 parameters defined above
+
+
+the plot can be found as : "Q2_b_newton.png"
+
+
+
++++++++++++++++++++++++++++++++++++
+Question 2c)
+
+for the errors on the parameters as shown in the code we find it by adding a random gaussian noise to the
+newton fit and use the newton method a multitude of times with different noise 
+then we would take the standard deviation in each parameter to find the error. 
+
+an example of this is finding this error for the parameters : 
+
+[0.07700271987069736,
+ 1.556721137788958e-14,
+ 0.003712154041378301,
+ 0.0035164087521149085] 
+
+For each parameter defined in the newton() function in order. (see script)
+
+The errors on the first and the fourth parameter seem reasonable with an error of about 1%
+The error on the 3rd parameter is very small(to) about (10^-3)% error which is expected since we know at what time the flare starts
+The error on the second parameter seems very low (10^-14), however whenever i change my guess parameter, it converges quickly to the same answer. 
+
+
+++++++++++++++++++++++++++++++++++
+Question 2d)
+
+The errors found in c) do not take into account the correlations between the different variables.
+To find the error, I just added random gaussian noise with Vrms amplitude, 
+however there is a correlation between some of the parameters which don't make this method the most precise to use. 
