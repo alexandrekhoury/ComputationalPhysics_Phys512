@@ -24,13 +24,16 @@ potential of 1 in the circle.
 
 The true potential was plotted and shown in graph : "potential_true1.png"
 The true density was shown in "density_true1.png".
+
 We can see that we don't have an exact analytic solution for this problem
 since we are imposing that the values at the edges of the box are 0. 
+(Would work better if box >> than circle)
 
-(Would work if box >> than circle)
-
+However we see that 
 The solution is still far from the analytic answer, the potential effects 
 are still close to the center.
+
+The charge density seems to be shifted by a constant everywhere.
 
 For the error analysis presented in question 2, 
 The script for question1 prints out : 
