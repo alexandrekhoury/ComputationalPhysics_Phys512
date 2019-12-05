@@ -14,6 +14,7 @@ Created on Mon Dec  2 21:10:26 2019
 
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
 class particles:
     def __init__(self,m=1.0,npart=10,soft=0.01,G=1.0,dt=0.1,grid_size=50):
@@ -97,23 +98,48 @@ class particles:
         
 if __name__=='__main__':
     
-    oversamp=0.1
+
+    dt=1
     n=100000
     grid_size=500
-    part=particles(m=1,npart=n,dt=0.1/oversamp,grid_size=grid_size)
-    time=5000
+    part=particles(m=1,npart=n,dt=dt,grid_size=grid_size)
+    time=500
 
     A,pot=part.get_grid(part.x,part.y)
     x_new,y_new=part.get_force(part.x,part.y,pot,A)
+    
+    grid=np.zeros([int(time//dt),grid_size,grid_size])
+    count=0
+    
+    energy=np.zeros(int(time//dt))
+    
     for i in np.arange(0,time,part.opts['dt']):
-        A_new,pot=part.get_grid(x_new,y_new)
         
+        
+        A_new,pot=part.get_grid(x_new,y_new)
         x_new,y_new=part.get_force(x_new,y_new,pot,A_new)
         
-        plt.clf()
-        plt.imshow(A_new)
-        plt.pause(0.0001)
+        if count<energy.shape[0]:
+            grid[count]=A_new
+            energy[count]=np.real(part.energy)
         
+#        plt.clf()
+#        plt.imshow(abs(A_new))
+#        plt.pause(0.0001)
+        
+        count+=1
         
 
-
+    fig, ax = plt.subplots(figsize=(8, 6))
+    cax = ax.imshow(grid[0])
+    
+    cb = fig.colorbar(cax)
+    
+    def animate(i):
+          
+        cax.set_array(grid[i])
+    
+        
+    anim = FuncAnimation(fig, animate, interval=40, frames=grid.shape[0], repeat=True,blit=False,save_count=grid.shape[0])
+    
+    anim.save("nonperiodic_nparticles.gif")

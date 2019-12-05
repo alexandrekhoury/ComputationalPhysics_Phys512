@@ -55,9 +55,9 @@ class particles:
 #    
         Gr_ft=self.Gr_ft
         rho_ft=np.fft.fft2(A)
-    
         conv=Gr_ft*rho_ft
         pot=np.fft.ifft2(conv)
+        #making sure the potential is centered with the particle positions
         pot=0.5*(np.roll(pot,1,axis=1)+pot)
         pot=0.5*(np.roll(pot,1,axis=0)+pot)
         
@@ -65,10 +65,13 @@ class particles:
         
     def get_force(self,x,y,pot,A):
         
+        #taking the gradient of the potential to get the forces
+        #multiplying by density matrix
+        
         forcex=-1/2*(np.roll(pot,1,axis=0)-np.roll(pot,-1,axis=0))*A
         forcey=-1/2*(np.roll(pot,1,axis=1)-np.roll(pot,-1,axis=1))*A
         
-        
+        #initializing new x and y positions 
         x_new=np.double(x.tolist())*0
         y_new=np.double(y.tolist())*0
         
@@ -136,7 +139,6 @@ if __name__=='__main__':
 #            grid[count]=A_new
         x_new,y_new=part.get_force(x_new,y_new,pot,A_new)
         
-        print(part.energy)
         plt.clf()
         plt.imshow(abs(A_new))
         plt.pause(0.0001)
