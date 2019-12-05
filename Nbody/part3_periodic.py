@@ -27,6 +27,7 @@ class particles:
         self.opts['grid_size']=grid_size
 
         self.opts['m']=m
+        #random particles generated 
         self.x,self.y=np.random.randint(0, self.opts['grid_size'], size=(2, self.opts['n']))
         #self.m=m
         self.vx=np.double(self.x.tolist())*0

@@ -113,22 +113,25 @@ if __name__=='__main__':
     
     energy=np.zeros(int(time//dt))
     
+    plt.figure()
+    plt.pause(15)
+    
     for i in np.arange(0,time,part.opts['dt']):
         
         
         A_new,pot=part.get_grid(x_new,y_new)
         x_new,y_new=part.get_force(x_new,y_new,pot,A_new)
         
-        if count<energy.shape[0]:
-            grid[count]=A_new
-            energy[count]=np.real(part.energy)
+#        if count<energy.shape[0]:
+#            grid[count]=A_new
+        energy[count]=np.real(part.energy)
         
-#        plt.clf()
-#        plt.imshow(abs(A_new))
-#        plt.pause(0.0001)
+        plt.clf()
+        plt.imshow(abs(A_new))
+        plt.pause(0.0001)
         
         count+=1
-        
+    
 
     fig, ax = plt.subplots(figsize=(8, 6))
     cax = ax.imshow(grid[0])
@@ -140,6 +143,6 @@ if __name__=='__main__':
         cax.set_array(grid[i])
     
         
-    anim = FuncAnimation(fig, animate, interval=40, frames=grid.shape[0], repeat=True,blit=False,save_count=grid.shape[0])
+    anim = FuncAnimation(fig, animate, interval=10, frames=grid.shape[0], repeat=True,blit=False,save_count=grid.shape[0])
     
-    anim.save("nonperiodic_nparticles.gif")
+    anim.save("nparticles_nonperiodic.gif")
