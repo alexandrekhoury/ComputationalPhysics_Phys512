@@ -166,7 +166,7 @@ if __name__=='__main__':
     #initialize the count
     count=0
     #initilize energy array
-    energy=np.zeros(int(time//dt))
+    energy=np.zeros(int(time//dt)+1)
     
     #for each time step
     for i in np.arange(0,time,part.opts['dt']):
@@ -177,31 +177,31 @@ if __name__=='__main__':
         
         
         grid[count]=A_new
-#        energy[count]=np.real(part.energy)
+        energy[count]=np.real(part.energy)
         
-#        plt.clf()
-#        plt.imshow(abs(A_new))
-#        plt.pause(0.0001)
-#        
+        plt.clf()
+        plt.imshow(abs(A_new))
+        plt.pause(0.0001)
+        
         count+=1
         
         
-#    plt.figure()
-#    plt.xlabel("time steps")
-#    plt.ylabel("Energy")
-#    plt.plot(energy)
+    plt.figure()
+    plt.xlabel("time steps")
+    plt.ylabel("Energy")
+    plt.plot(energy)
 
 
-    fig, ax = plt.subplots(figsize=(8, 6))
-    cax = ax.imshow(grid[0])
-    
-    cb = fig.colorbar(cax)
-    
-    def animate(i):
-          
-        cax.set_array(grid[i])
-    
-        
-    anim = FuncAnimation(fig, animate, interval=40, frames=grid.shape[0], repeat=True,blit=False,save_count=grid.shape[0])
-    
+#    fig, ax = plt.subplots(figsize=(8, 6))
+#    cax = ax.imshow(grid[0])
+#    
+#    cb = fig.colorbar(cax)
+#    
+#    def animate(i):
+#          
+#        cax.set_array(grid[i])
+#    
+#        
+#    anim = FuncAnimation(fig, animate, interval=40, frames=grid.shape[0], repeat=True,blit=False,save_count=grid.shape[0])
+#    
     #anim.save("power_spec_particles.gif")

@@ -127,6 +127,10 @@ For the video file size to be reasonable, i had to increase the time steps:
 
 shown in : "nparticles_nonperiodic.mp4"
 
+Here is also a link on google drive:
+
+https://drive.google.com/open?id=1umwChfeh0dh6IThVde-kH3RvJJD0_q0T
+
 A plot of the energy vs time is showed in "energy_nonperiodic.png".
 We can see that the energy is somewhat constant and then explodes releasing a lot 
 of kinetic energy (huge peak in plot) almost doubles the initial energy. Then it stabilizes
@@ -137,6 +141,14 @@ It is observed that energy isn't conserved very well using this scheme.
 ===================================================================
 PART4
 
+the script for this part is : "part4.py"
+
+m=1		mass
+soft=50		softening
+dt=0.1		time step
+grid_size= 500	size of the grid
+n=100000	number of particles
+
 I took the random density grid that I generated and fourier transformed it.
 I then took the new density grid in the fourier space and multiplied the mass
 density by 1/k^3. I then re fourrier transformed the grid and get the following results:
@@ -145,3 +157,9 @@ I get very similar results to the periodic case. However the particles form smal
 a lot faster. They also tend to stay longer in those smaller clusters before clumping up
 into bigger clusters. Also in thoses smaller clusters there are mini-explosions that can 
 be observed. Energy is once again not conserved in this case. 
+
+The animation can be showed in the following link (60 MB):
+
+https://drive.google.com/open?id=1HMTw-g0UgL9Ty7UNQeeQC2m5P3kuLVve
+
+At any time you can just run my script and it will reproduce the results shown.

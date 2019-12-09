@@ -125,17 +125,21 @@ if __name__=='__main__':
         
         count+=1
     
-
-    fig, ax = plt.subplots(figsize=(8, 6))
-    cax = ax.imshow(grid[0])
+    plt.figure()
+    plt.xlabel("time steps")
+    plt.ylabel("Energy")
+    plt.plot(energy)
+#
+#    fig, ax = plt.subplots(figsize=(8, 6))
+#    cax = ax.imshow(grid[0])
+#    
+#    cb = fig.colorbar(cax)
     
-    cb = fig.colorbar(cax)
-    
-    def animate(i):
-          
-        cax.set_array(grid[i])
-    
-        
-    anim = FuncAnimation(fig, animate, interval=10, frames=grid.shape[0], repeat=True,blit=False,save_count=grid.shape[0])
-    
-    anim.save("nparticles_nonperiodic.gif")
+#    def animate(i):
+#          
+#        cax.set_array(grid[i])
+#    
+#        
+#    anim = FuncAnimation(fig, animate, interval=10, frames=grid.shape[0], repeat=True,blit=False,save_count=grid.shape[0])
+#    
+    #anim.save("nparticles_nonperiodic.gif")
