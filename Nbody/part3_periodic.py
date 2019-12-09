@@ -36,7 +36,10 @@ class particles:
         #creating greens function
         xx= np.linspace(0, grid_size-1, grid_size)
         kx,ky=np.meshgrid(xx,xx)
-        Gr=1/(1e-13+4*np.pi*((kx)**2+(ky)**2)**(1/2))
+        k=4*np.pi*((kx)**2+(ky)**2)**(1/2)
+        softf=4*np.pi*self.opts['soft']
+        k[k<softf]=softf
+        Gr=1/(k)
         Gr[0,0]=1/(4*np.pi*soft)
         #making the function apply to every corner
         Gr+=np.flip(Gr,0)

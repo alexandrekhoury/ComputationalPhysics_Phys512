@@ -87,14 +87,7 @@ class particles:
         self.energy=1/2*np.sum(self.vx**2+self.vy**2)*m+np.sum(pot)/2
 
         return x_new,y_new
-    def evolve(self):
-        self.x+=self.vx*self.opts['dt']
-        self.y+=self.vy*self.opts['dt']
-        pot=self.get_forces()
-        self.vx+=self.fx*self.opts['dt']
-        self.vy+=self.fy*self.opts['dt']
-        kinetic=0.5*numpy.sum(self.m*(self.vx**2+self.vy**2))
-        return pot+kinetic
+
         
 if __name__=='__main__':
     

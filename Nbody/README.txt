@@ -82,6 +82,12 @@ the file was too large so I had to upload it to the drive to show the animation
 (if you download the link it will show a beautiful simulation), the file is 313MB
 https://drive.google.com/open?id=1jqHlg60DRxmTnsOgUdTMLXfaSTSEjDgS
 
+Another compressed version is linked (only 100 MB) : 
+https://drive.google.com/file/d/1Xr0bNlrZaio2DOU4blwTZVrlWCTs7PGW/view?usp=sharing
+
+Please email me if the links do not work as I do not want my hours of effort to be wasted. (alexandre.khoury@mail.mcgill.ca)
+They should work though!
+
 here is a description of the animation: many small galaxy like
 objects are formed (clusters) since the density is not equal everywhere. Theses galaxies
 approach each other and form bigger clusters. Eventually they all gather in a huge cluster
@@ -97,6 +103,11 @@ It is observed that energy isn't conserved very well using this scheme.
 
 
 Non-periodic Boundary conditions:
+
+To do this, I removed the modulus operator I used to implement the periodic boudary conditions 
+in the previous part. This ensures that the potential does not affect particles from the sides
+of the grid. I could've also set the potential to be = to 0 on the boundaries, however this 
+method produces the same results. 
 
 The script: "part3_non_periodic.py"
 
@@ -125,3 +136,12 @@ It is observed that energy isn't conserved very well using this scheme.
 
 ===================================================================
 PART4
+
+I took the random density grid that I generated and fourier transformed it.
+I then took the new density grid in the fourier space and multiplied the mass
+density by 1/k^3. I then re fourrier transformed the grid and get the following results:
+
+I get very similar results to the periodic case. However the particles form smaller clusters
+a lot faster. They also tend to stay longer in those smaller clusters before clumping up
+into bigger clusters. Also in thoses smaller clusters there are mini-explosions that can 
+be observed. Energy is once again not conserved in this case. 

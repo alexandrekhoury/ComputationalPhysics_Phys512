@@ -86,16 +86,11 @@ class particles:
         m=self.opts['m']
         self.energy=1/2*np.sum(self.vx**2+self.vy**2)*m+np.sum(pot)/2
         return x_new,y_new
-    def evolve(self):
-        
-        kinetic=0.5*numpy.sum(self.m*(self.vx**2+self.vy**2))
-        return pot+kinetic
+
         
 if __name__=='__main__':
     
     
-    
-
     n=2
     grid_size=150
     m=20
